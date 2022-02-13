@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "amplifyuilibrarysamp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/tmp/amplify-a2ae2c11-839c-4bcf-99f5-16f18619c09a/amplify/backend/api/amplifyuilibrarysamp/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "keyDescription": "api key description",
+      "expirationTime": 30
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ],
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    }
+  }
+}
