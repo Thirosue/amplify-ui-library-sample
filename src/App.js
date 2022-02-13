@@ -1,12 +1,28 @@
-import { NavBar, HeroLayout4, CardC, MarketingFooter  } from './ui-components';
+import { useEffect, useState } from 'react';
+import { DataStore, Predicates } from 'aws-amplify';
+import { Drink } from './models';
+import { NavBar, HeroLayout4, CardC, MarketingFooter } from './ui-components';
 
 function App() {
+  const [drinks, setDrinks] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const drinks = await DataStore.query(Drink, Predicates.ALL, {
+        page: 0,
+        limit: 10
+      });
+      console.log(drinks)
+      setDrinks(drinks)
+    }
+    fetchData();
+  }, [Drink]);
+
   return (
     <>
       <NavBar width={'100%'} />
       <HeroLayout4 width={'100%'} />
-      <div className="my-8">
-        Contents
+      <div className="grid m-32 grid-cols-3 gap-20">
+        {drinks.map((drink, i) => <CardC key={i} drink={drink} thumbnailHeight={'250px'} />)}
       </div>
       <MarketingFooter width={'100%'} />
     </>
